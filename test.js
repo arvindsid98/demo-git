@@ -149,3 +149,25 @@
 //             console.log('error');
 //     }
 // }
+
+function change(key,value) {
+    var num=Date.parse(value);
+    if(num){
+        console.log('thats a date');
+        return new Date(num);
+    }
+    return value;
+}
+
+function rechange(key,value){
+    if(typeof value===Date){
+        return value.toISOString();
+    }
+    return value;
+}
+
+var json='{ "Name" : "jen","Dob" : "2012-05-20T11:20:00.000Z" }';
+var  parsed= JSON.parse(json,change);
+console.log(parsed.Dob instanceof Date);
+var d= JSON.stringify(parsed);
+console.log(d);
